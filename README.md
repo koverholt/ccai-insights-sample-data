@@ -1,4 +1,4 @@
-# ccai-insights-sample-data
+# CCAI Insights Sample Data Generator
 
 Generate sample chat log data in
 [CCAI conversation data format](https://cloud.google.com/contact-center/insights/docs/conversation-data-format)
@@ -15,7 +15,7 @@ to use in CCAI Insights on Google Cloud, such as:
         },
         {
             "start_timestamp_usec": 1675813258000000,
-            "text": "Hi, I'm having an issue with my router",
+            "text": "Hi, I'm having an issue with my mobile phone",
             "role": "CUSTOMER",
             "user_id": 1
         },
@@ -27,7 +27,7 @@ to use in CCAI Insights on Google Cloud, such as:
         },
         {
             "start_timestamp_usec": 1675813316000000,
-            "text": "I have not been able to connect to my account. I cannot log into my account. I cannot access my account. I do not know what to do to fix my account.",
+            "text": "I cannot download any apps.",
             "role": "CUSTOMER",
             "user_id": 1
         }
