@@ -37,6 +37,10 @@ them](https://cloud.google.com/contact-center/insights/docs/create-analyze-conve
 
 ## Sample data
 
+The sample data includes timestamps, text, role, and user ID for a support
+conversation. Each support conversation will be written to a JSON file in the
+`output/` directory and will appear similar to:
+
 ```json
 {
     "entries": [
