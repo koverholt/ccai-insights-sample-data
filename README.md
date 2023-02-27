@@ -24,7 +24,7 @@ You can then upload the sample chat log data to Google Cloud Storage (GCS)
 using the [`gsutil` tool](https://cloud.google.com/storage/docs/gsutil):
 
 ```bash
-gsutil -m cp output/* gs://your-sample-chat-log-bucket
+gsutil -m cp "output/*.json" gs://your-sample-chat-log-bucket
 ```
 
 ## Using Insights
