@@ -1,4 +1,5 @@
 import argparse
+import datetime
 import json
 import random
 
@@ -6,7 +7,7 @@ parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFo
 parser.add_argument(
     "num_call_logs",
     nargs="?",
-    default=10000,
+    default=30000,
     type=int,
     help="Number of call log files to generate",
 )
@@ -81,50 +82,98 @@ problem_solved = [
 
 
 def generate_log():
+    # Generate timestamps within the last 30 days in microseconds of epoch time
+    dt = datetime.datetime.today() - random.random() * datetime.timedelta(days=30)
+    timestamp = int(round(dt.timestamp()) * 1e6)
+    response_delay = int(random.randint(10, 30) * 1e6)
+
+    # Generate JSON object of conversation
     call_log = {
         "entries": [
-            {"text": random.choice(greetings), "role": "AGENT", "user_id": 2},
             {
+                "start_timestamp_usec": timestamp + response_delay * 0,
+                "text": random.choice(greetings),
+                "role": "AGENT",
+                "user_id": 2,
+            },
+            {
+                "start_timestamp_usec": timestamp + response_delay * 1,
                 "text": "Hi, I'm having an issue with my " + random.choice(devices),
                 "role": "CUSTOMER",
                 "user_id": 1,
             },
             {
+                "start_timestamp_usec": timestamp + response_delay * 2,
                 "text": "Sorry to hear. Can you tell me what the problem is?",
                 "role": "AGENT",
                 "user_id": 2,
             },
-            {"text": random.choice(problems), "role": "CUSTOMER", "user_id": 1},
             {
+                "start_timestamp_usec": timestamp + response_delay * 3,
+                "text": random.choice(problems),
+                "role": "CUSTOMER",
+                "user_id": 1,
+            },
+            {
+                "start_timestamp_usec": timestamp + response_delay * 4,
                 "text": "Can you give me more details about the problem?",
                 "role": "AGENT",
                 "user_id": 2,
             },
-            {"text": random.choice(problem_detail), "role": "CUSTOMER", "user_id": 1},
             {
+                "start_timestamp_usec": timestamp + response_delay * 5,
+                "text": random.choice(problem_detail),
+                "role": "CUSTOMER",
+                "user_id": 1,
+            },
+            {
+                "start_timestamp_usec": timestamp + response_delay * 6,
                 "text": "And what is the status shown in the application settings?",
                 "role": "AGENT",
                 "user_id": 2,
             },
-            {"text": random.choice(statuses), "role": "CUSTOMER", "user_id": 1},
             {
+                "start_timestamp_usec": timestamp + response_delay * 7,
+                "text": random.choice(statuses),
+                "role": "CUSTOMER",
+                "user_id": 1,
+            },
+            {
+                "start_timestamp_usec": timestamp + response_delay * 8,
                 "text": "Can you tell me your account number?",
                 "role": "AGENT",
                 "user_id": 2,
             },
             {
+                "start_timestamp_usec": timestamp + response_delay * 9,
                 "text": "Sure, it's " + str(random.randint(100000000, 999999999)),
                 "role": "CUSTOMER",
                 "user_id": 1,
             },
-            {"text": random.choice(solutions), "role": "AGENT", "user_id": 2},
             {
+                "start_timestamp_usec": timestamp + response_delay * 10,
+                "text": random.choice(solutions),
+                "role": "AGENT",
+                "user_id": 2,
+            },
+            {
+                "start_timestamp_usec": timestamp + response_delay * 11,
                 "text": "I see, thanks for the information, I will give that a try.",
                 "role": "CUSTOMER",
                 "user_id": 1,
             },
-            {"text": random.choice(check_solved), "role": "AGENT", "user_id": 2},
-            {"text": random.choice(problem_solved), "role": "CUSTOMER", "user_id": 1},
+            {
+                "start_timestamp_usec": timestamp + response_delay * 12,
+                "text": random.choice(check_solved),
+                "role": "AGENT",
+                "user_id": 2,
+            },
+            {
+                "start_timestamp_usec": timestamp + response_delay * 13,
+                "text": random.choice(problem_solved),
+                "role": "CUSTOMER",
+                "user_id": 1,
+            },
         ]
     }
 
