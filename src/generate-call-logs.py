@@ -29,23 +29,25 @@ devices = [
     "laptop",
     "router",
     "mobile phone",
-    "camera",
+    "smart watch",
+    "tablet",
+    "streaming device",
 ]
 
 problems = [
-    "It doesn't seem to turn on. The device does not respond to any buttons or commands. The power light does not turn on.",
-    "The device is not connecting to the internet. The device cannot connect to a Wi-Fi network. The device cannot connect to the internet when plugged into a wired network.",
-    "I cannot download any apps. I am only able to access the messaging app. I am not able to access other apps.",
-    "I have not been able to connect to my account. I cannot log into my account. I cannot access my account. I do not know what to do to fix my account.",
-    "The battery only lasts 30 minutes. The battery drains quickly after being fully charged. The battery does not last as long as it used to.",
+    "The {0} doesn't seem to turn on. The {0} does not respond to any buttons or commands. The power light on the {0} does not turn on.",
+    "The {0} is not connecting to the internet. The {0} cannot connect to a Wi-Fi network. The {0} cannot connect to the internet when plugged into a wired network.",
+    "I cannot download any apps on my {0}. I am only able to access the messaging app on my {0}. I am not able to access other apps.",
+    "I have not been able to connect to my account from my {0}. I cannot log into my account on my {0}. I cannot access my account on the {0}. I do not know what to do to fix my account.",
+    "The battery on my {0} only lasts 30 minutes. The battery drains quickly after being fully charged. The {0} battery does not last as long as it used to.",
 ]
 
 problem_detail = [
-    "It says that there is an error with the latest update. The device is stuck on the previous update. The update is not working properly.",
-    "It's been happening for the last 4 days, when I dropped the device. It's possible that the fall caused some damage to the device.",
-    "The device isn't responding when I try to factory reset it. I changed the power settings a few days ago, and it hasn't been working correctly since then.",
-    "I tried using the troubleshooting wizard, but it didn't help. There was a warning to check that the device has enough storage space and if it's compatible with the software I'm trying to use.",
-    "The problem is still happening since I last called in. I tried restarting it 3 times and the issue is still happening. It's reporting a memory error about once an hour.",
+    "The {0} says that there is an error with the latest update. The {0} is stuck on the previous update. The update is not working properly on the {0}.",
+    "It's been happening for the last 4 days, when I dropped the {0}. It's possible that the fall caused some damage to the {0}.",
+    "The {0} isn't responding when I try to factory reset it. I changed the power settings a few days ago, and the {0} hasn't been working correctly since then.",
+    "I tried using the troubleshooting wizard on the {0}, but it didn't help. There was a warning to check that the {0} has enough storage space and if it's compatible with the software I'm trying to use.",
+    "The problem with the {0} is still happening since I last called in. I tried restarting the {0} 3 times and the issue is still happening. It's reporting a memory error about once an hour.",
 ]
 
 statuses = [
@@ -57,11 +59,11 @@ statuses = [
 ]
 
 solutions = [
-    "Have you tried turning it off and on again? The device should be connected to the internet in order to contact our servers. If it is not, check your internet connection and make sure that your device is connected to the router.",
-    "Can you update to the latest firmware version? You can check if your router's firmware is up to date by going to the router's settings and looking for a firmware update option. If there is an update available, install it.",
-    "Check if your device is able to access streaming content. You can check if your device is able to access streaming content by trying to watch a show or movie on a streaming service. If you are unable to watch anything, check your internet connection and make sure that your device is connected to the correct network.",
-    "Check if your devices are receiving a signal.? You can check if your devices are receiving a signal by using a signal strength meter. If the signal strength is low, you may need to move your devices closer to the router.",
-    "Have you tried to factory reset the device? You can check if your router's settings are correct by going to the router's settings and looking for a default settings option. If there is a default settings option, reset your router to the default settings.",
+    "Have you tried turning the {0} off and on again? The {0} should be connected to the internet in order to contact our servers. If it is not, check your internet connection and make sure that your {0} is connected.",
+    "Can you update your {0} to the latest firmware version? You can check if your {0}'s firmware is up to date by going to the {0}'s settings and looking for a firmware update option. If there is an update available, install it.",
+    "Check if your {0} is able to access streaming content. You can check if your {0} is able to access streaming content by trying to watch a show or movie on a streaming service. If you are unable to watch anything, check your internet connection and make sure that your {0} is connected to the correct network.",
+    "Check if your {0} are receiving a signal? You can check if your {0} are receiving a signal by using a signal strength meter. If the signal strength is low, you may need to move your {0} closer to the router.",
+    "Have you tried to factory reset the {0}? You can check if your {0}'s settings are correct by going to the {0}'s settings and looking for a default settings option. If there is a default settings option, reset your {0} to the default settings.",
 ]
 
 check_solved = [
@@ -73,15 +75,18 @@ check_solved = [
 ]
 
 problem_solved = [
-    "Yes, my problem is solved now. I have checked the settings and made sure that everything is set up correctly.",
-    "No, I'm still having the same problem. I have tried contacting the manufacturer of the device for help.",
-    "Yes, everything is working fine now. I have tried using a different connection to see if the problem is with the router or with the internet service provider.",
-    "Yes, it seems to be working now. I have checked the connections and made sure that everything is plugged in properly.",
-    "No, I'm having a different problem now. I have tried using a different website or app to see if the problem is with the website or app itself.",
+    "Yes, my problem is solved now. I have checked the settings on my {0} and made sure that everything is set up correctly.",
+    "No, I'm still having the same problem. I will try contacting the manufacturer of the {0} for help.",
+    "Yes, everything is working fine now. I have tried using a different connection to see if the problem is with the {0} or with the internet service provider.",
+    "Yes, the {0} seems to be working now. I have checked the connections and made sure that everything is plugged in properly.",
+    "No, I'm having a different problem now with the {0}. I have tried using a different website or app to see if the problem is with the website or app itself.",
 ]
 
 
 def generate_log():
+    # Select a device that the user is having trouble with
+    device = random.choice(devices)
+
     # Generate timestamps within the last 30 days in microseconds of epoch time
     dt = datetime.datetime.today() - random.random() * datetime.timedelta(days=30)
     timestamp = int(round(dt.timestamp()) * 1e6)
@@ -98,7 +103,7 @@ def generate_log():
             },
             {
                 "start_timestamp_usec": timestamp + response_delay * 1,
-                "text": "Hi, I'm having an issue with my " + random.choice(devices),
+                "text": "Hi, I'm having an issue with my " + device,
                 "role": "CUSTOMER",
                 "user_id": 1,
             },
@@ -110,25 +115,25 @@ def generate_log():
             },
             {
                 "start_timestamp_usec": timestamp + response_delay * 3,
-                "text": random.choice(problems),
+                "text": random.choice(problems).format(device),
                 "role": "CUSTOMER",
                 "user_id": 1,
             },
             {
                 "start_timestamp_usec": timestamp + response_delay * 4,
-                "text": "Can you give me more details about the problem?",
+                "text": "Can you give me more details about the problem with your {0}?".format(device),
                 "role": "AGENT",
                 "user_id": 2,
             },
             {
                 "start_timestamp_usec": timestamp + response_delay * 5,
-                "text": random.choice(problem_detail),
+                "text": random.choice(problem_detail).format(device),
                 "role": "CUSTOMER",
                 "user_id": 1,
             },
             {
                 "start_timestamp_usec": timestamp + response_delay * 6,
-                "text": "And what is the status shown in the application settings?",
+                "text": "And what is the status shown in the settings on the {0}?".format(device),
                 "role": "AGENT",
                 "user_id": 2,
             },
@@ -152,7 +157,7 @@ def generate_log():
             },
             {
                 "start_timestamp_usec": timestamp + response_delay * 10,
-                "text": random.choice(solutions),
+                "text": random.choice(solutions).format(device),
                 "role": "AGENT",
                 "user_id": 2,
             },
@@ -170,7 +175,7 @@ def generate_log():
             },
             {
                 "start_timestamp_usec": timestamp + response_delay * 13,
-                "text": random.choice(problem_solved),
+                "text": random.choice(problem_solved).format(device),
                 "role": "CUSTOMER",
                 "user_id": 1,
             },
