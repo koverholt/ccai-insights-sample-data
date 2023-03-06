@@ -7,7 +7,7 @@ parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFo
 parser.add_argument(
     "num_call_logs",
     nargs="?",
-    default=30000,
+    default=10000,
     type=int,
     help="Number of call log files to generate",
 )

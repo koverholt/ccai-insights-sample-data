@@ -6,7 +6,7 @@ to use in CCAI Insights on Google Cloud.
 
 ## Usage
 
-To generate sample chat logs, using the default of 30,000:
+To generate sample chat logs, using the default of 10,000:
 
 ```bash
 python src/generate-call-logs.py
