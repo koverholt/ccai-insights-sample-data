@@ -35,6 +35,16 @@ Once you've generated and uploaded the sample data, you can [import the
 conversations into CCAI Insights and analyze
 them](https://cloud.google.com/contact-center/insights/docs/create-analyze-conversation-ui).
 
+## Cleanup
+
+After you're done using the sample data with Insights, you can edit the values
+in the following script then run it to delete ALL conversation data in Insights
+for cleanup purposes:
+
+```
+bash src/delete-all-conversations.sh
+```
+
 ## Sample data
 
 The sample data includes timestamps, text, role, and user ID for a support
